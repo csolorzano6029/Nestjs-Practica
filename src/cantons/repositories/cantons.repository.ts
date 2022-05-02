@@ -7,7 +7,11 @@ export class CantonsRepository extends Repository<CantonsEntity> {
   //TypeORM
   public async getAllCantons(): Promise<CantonsEntity[]> {
     try {
-      return await this.find();
+      return await this.find({
+        order: {
+          nombre: 'ASC',
+        },
+      });
     } catch (error) {
       throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
